@@ -1,0 +1,787 @@
+:root {
+    --primary-color: #E6007E;
+    --price-color: #FF6B00;
+    --primary-light: rgba(230, 0, 126, 0.15);
+    --text-dark: #FFFFFF;
+    --text-muted: #D1D1D1;
+    --bg-body: #0A0A0A;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+    --gradient-text: linear-gradient(45deg, #FFFFFF 0%, #E6007E 100%);
+    --gradient-btn: linear-gradient(135deg, #E6007E 0%, #A044FF 100%);
+}
+
+body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Custom Bootstrap Overrides */
+.btn-primary,
+.btn-gradient {
+    background: var(--gradient-btn);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 30px;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover,
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 0, 126, 0.4);
+    background: var(--gradient-btn);
+    /* Keep gradient on hover */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #C4006B;
+    border-color: #C4006B;
+}
+
+.btn-custom-cart {
+    background: white;
+    border: 1px solid #000;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+.btn-custom-cart:hover {
+    background: #000;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom-cart:hover .badge {
+    background-color: white !important;
+    color: black !important;
+}
+
+.btn-outline-dark {
+    border-radius: 50px;
+    padding: 10px 40px;
+    font-weight: 500;
+    color: white;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+}
+
+.btn-outline-dark:hover {
+    background: white;
+    color: black;
+}
+
+.text-primary-custom {
+    color: var(--primary-color);
+}
+
+.bg-primary-light {
+    background-color: var(--primary-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(15px) saturate(180%);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Optional: Add a shadow when stuck (can be handled via JS toggle, but this is a good baseline) */
+.navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-dark) !important;
+    margin-right: 20px;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 0px 0px 40px 0;
+    /* Reduced padding since container has internal padding */
+    position: relative;
+    /* Removed background-image from here */
+}
+
+/* Apply background within the container */
+.hero-section .container {
+    position: relative;
+    background-color: var(--primary-light);
+    /* Fallback or base tint */
+    border-radius: var(--border-radius-lg);
+    padding: 38px 20px 80px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-section .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-logo {
+    max-height: 100px;
+    width: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 5px 15px rgba(230, 0, 126, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.05);
+}
+
+.highlight-text {
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 15px;
+    height: 15px;
+    background-color: #FFB6E1;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.qr-phone-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.qr-code-box {
+    background: white;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(230, 0, 126, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(230, 0, 126, 0.1);
+}
+
+.qr-code-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(230, 0, 126, 0.2);
+}
+
+.qr-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.phone-number a {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.phone-number a:hover {
+    color: var(--primary-color) !important;
+}
+
+.hero-image-container {
+    margin-top: 40px;
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: var(--border-radius-lg);
+    /* box-shadow: var(--card-shadow); */
+    /* Design doesn't show hard shadow on hero img often, but let's see */
+}
+
+/* Features/Info */
+.info-section {
+    padding: 35px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.feature-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.feature-tab {
+    padding: 10px 24px;
+    border-radius: 50px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-tab.active,
+.feature-tab:hover {
+    color: white;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 15px rgba(230, 0, 126, 0.3);
+    transform: translateY(-2px);
+}
+
+.info-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.info-icon {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.info-content h3 {
+    margin-bottom: 15px;
+}
+
+.info-img {
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+#feature-title,
+#feature-desc {
+    transition: opacity 0.2s ease;
+}
+
+/* Menu Section */
+.feature-content {
+    transition: opacity 0.2s ease;
+}
+
+.menu-section {
+    padding: 0px 0;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.menu-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(230, 0, 126, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.menu-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.menu-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.menu-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.menu-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--price-color);
+    font-size: 1.1rem;
+}
+
+.btn-add {
+    background: var(--gradient-btn);
+    color: white;
+    padding: 5px 20px;
+    width: auto;
+    height: auto;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Testimonials */
+.testimonial-section {
+    padding: 35px 0 0;
+    text-align: center;
+}
+
+.testimonial-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 50px;
+    max-width: 800px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.rating {
+    color: #FFC107;
+    margin-bottom: 20px;
+}
+
+.quote {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-style: normal;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 35px 0;
+    background: var(--bg-body);
+}
+
+.contact-form-card,
+.visit-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+    height: 100%;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 12px 20px;
+    border: 1px solid var(--glass-border);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.Contact-title {
+    margin-bottom: 30px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* Swiper Overrides */
+.swiper {
+    width: 100%;
+    padding-bottom: 20px;
+    /* Space for shadow if cards go deep */
+    padding-top: 10px;
+    padding-left: 5px;
+    /* slight offset so shadow doesn't clip on left edge initially */
+    padding-right: 5px;
+}
+
+.swiper-slide {
+    height: auto;
+    /* Allow full height for flex stretch */
+    display: flex;
+}
+
+/* Ensure menu cards take full height of slide */
+.menu-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Custom Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+
+    /* Hero Section */
+    .hero-section {
+        text-align: center;
+        padding: 0px 0;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        /* Smaller title on mobile */
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-image-container {
+        margin-top: 30px;
+    }
+
+    /* Center Hero Buttons */
+    .hero-section .d-flex {
+        justify-content: center;
+    }
+
+    /* Info Card */
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .info-img {
+        width: 100%;
+        height: 250px;
+    }
+
+    /* Adjust Feature Tabs scrolling if needed */
+    .feature-tabs {
+        gap: 10px;
+    }
+
+    .feature-tab {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+/* Floating App Button */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--text-dark);
+    /* Black background as per common designs for app buttons, or use primary? Design implies premium. Let's use Black for contrast or Gradient. User said "according to design". Usually these are dark or primary. Let's stick to Gradient to match "Order Now" or Black for "App Store" vibe. Let's use the Gradient for consistency with the brand */
+    background: var(--gradient-btn);
+    border-radius: 50px;
+    z-index: 1050;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 5px;
+    /* tight padding for icon circle */
+}
+
+.floating-btn .icon-circle {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(230, 0, 126, 0.4) !important;
+}
+
+.info-card p {
+    font-size: 16px;
+}
+
+@media(max-width:600px) {
+    .navbar-brand img {
+        width: 295px;
+    }
+
+    .menu-section {
+        padding: 0px 0 0;
+    }
+}
+
+/* Modals - Premium Elegant Look */
+.modal-content {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 32px !important;
+    color: white;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(230, 0, 126, 0.15);
+    /* Subtle pink glow */
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 25px 30px 15px !important;
+}
+
+.modal-title {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 40px 30px !important;
+}
+
+.qr-code-box {
+    background: white !important;
+    padding: 20px;
+    border-radius: 28px;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 8px solid rgba(230, 0, 126, 0.05);
+}
+
+.qr-code-box:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.phone-number a {
+    color: var(--primary-color) !important;
+    font-size: 1.75rem !important;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 15px rgba(230, 0, 126, 0.2);
+}
+
+.phone-number a:hover {
+    transform: scale(1.02);
+    text-shadow: 0 0 20px rgba(230, 0, 126, 0.4);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 20px 30px 30px !important;
+}
+
+.modal-footer .btn-primary {
+    box-shadow: 0 10px 20px rgba(230, 0, 126, 0.3);
+}
+
+.modal-footer .btn-outline-dark {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.qty-btn {
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 8px;
+    cursor: pointer;
+}
+
+.addon-box label {
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.addon-box input {
+    margin-right: 5px;
+}
+
+.total-text {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.navbar-brand img {
+    width: 284px;
+}
+.navbar-toggler{
+    background: #f19e38;
+}
+@media(max-width:600px){
+    .hero-logo {
+    max-height: 60px;
+    }
+    .mob-center{
+        text-align: center;
+    }
+}
