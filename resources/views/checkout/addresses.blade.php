@@ -209,22 +209,26 @@
                                         <input type="text" name="phone" class="form-control" placeholder="Phone" required>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" name="address_line_1" class="form-control" placeholder="Address Line 1" required>
+                                        <input type="text" id="address-search" class="form-control" placeholder="Search address (Kolkata only)">
+                                        <small class="text-muted">Start typing to search Kolkata addresses</small>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" name="address_line_2" class="form-control" placeholder="Address Line 2 (Optional)">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" name="city" class="form-control" placeholder="City" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" name="state" class="form-control" placeholder="State" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="text" name="postal_code" class="form-control" placeholder="Postal Code" required>
+                                        <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Address Line 1" required>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" name="country" class="form-control" value="India" required>
+                                        <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Address Line 2 (Optional)">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="state" id="state" class="form-control" placeholder="State" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="postal_code" id="postal_code" class="form-control" placeholder="Postal Code" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="country" id="country" class="form-control" value="India" required>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-check">

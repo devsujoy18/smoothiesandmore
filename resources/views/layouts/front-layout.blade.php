@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -423,6 +423,65 @@
                 });
             });
         });
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.api_key') }}&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+    <script>
+        function initAutocomplete() {
+            window.autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('address-search'),
+                {
+                    types: ['address'],
+                    fields: ['address_components', 'formatted_address'],
+                    componentRestrictions: { country: 'in' }
+                }
+            );
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            const place = autocomplete.getPlace();
+            const components = place.address_components;
+            
+            let addressLine1 = '';
+            let addressLine2 = '';
+            let city = '';
+            let state = '';
+            let postalCode = '';
+            let country = 'India';
+
+            for (const component of components) {
+                const types = component.types;
+                if (types.includes('street_number')) {
+                    addressLine1 = component.long_name + ' ' + addressLine1;
+                } else if (types.includes('route')) {
+                    addressLine1 += component.long_name;
+                } else if (types.includes('sublocality_level_1') || types.includes('sublocality')) {
+                    addressLine2 = component.long_name;
+                } else if (types.includes('locality')) {
+                    city = component.long_name;
+                } else if (types.includes('administrative_area_level_1')) {
+                    state = component.long_name;
+                } else if (types.includes('postal_code')) {
+                    postalCode = component.long_name;
+                } else if (types.includes('country')) {
+                    country = component.long_name;
+                }
+            }
+
+            // Validate Kolkata pincodes (7000XX)
+            if (!postalCode || !postalCode.startsWith('7000')) {
+                alert('Please select an address within Kolkata (pincode starting with 7000)');
+                return;
+            }
+
+            document.getElementById('address_line_1').value = addressLine1.trim();
+            document.getElementById('address_line_2').value = addressLine2.trim();
+            document.getElementById('city').value = city;
+            document.getElementById('state').value = state;
+            document.getElementById('postal_code').value = postalCode;
+            document.getElementById('country').value = country;
+        }
     </script>
 
     
