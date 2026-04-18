@@ -20,4 +20,3 @@ class EnsureCartNotEmpty
         return $next($request);
     }
 }
-

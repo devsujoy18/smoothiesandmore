@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderItem extends Model
 {
     public const TYPE_MAIN = 'main';
+
     public const TYPE_ADDON = 'addon';
 
     protected $fillable = [
@@ -41,4 +42,3 @@ class OrderItem extends Model
         return $this->belongsTo(AddOn::class, 'addon_product_id');
     }
 }
-

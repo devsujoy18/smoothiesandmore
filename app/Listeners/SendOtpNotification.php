@@ -19,4 +19,3 @@ class SendOtpNotification implements ShouldQueue
         ]);
     }
 }
-

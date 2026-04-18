@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Category;
 use App\Models\AddOn;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,7 +21,7 @@ class ProductController extends Controller
             ->with('category')
             ->when($search, function ($q, $s) {
                 $q->where('name', 'like', "%{$s}%")
-                  ->orWhere('description', 'like', "%{$s}%");
+                    ->orWhere('description', 'like', "%{$s}%");
             })
             ->when($categoryFilter, function ($q, $c) {
                 $q->where('category_id', $c);
@@ -42,6 +42,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get();
+
         return view('products.create', compact('categories'));
     }
 
@@ -66,13 +67,13 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             $uploadPath = public_path('images/products');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/products/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/products/'.$fileName;
         }
 
         Product::create($data);
@@ -86,6 +87,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load(['category', 'addons']);
+
         return view('products.show', compact('product'));
     }
 
@@ -96,6 +98,7 @@ class ProductController extends Controller
     {
         $categories = Category::orderBy('name')->get();
         $product->load('category');
+
         return view('products.edit', compact('product', 'categories'));
     }
 
@@ -125,13 +128,13 @@ class ProductController extends Controller
             }
 
             $uploadPath = public_path('images/products');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/products/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/products/'.$fileName;
         }
 
         $product->update($data);
@@ -153,50 +156,50 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('message', 'Product deleted successfully.');
     }
 
-        /**
-         * Show the page for managing add-ons for a product.
-         */
-        public function editAddons(Product $product)
-        {
-            $productAddons = $product->addons()->get();
-            $availableAddons = AddOn::whereNotIn('id', $productAddons->pluck('id'))->get();
+    /**
+     * Show the page for managing add-ons for a product.
+     */
+    public function editAddons(Product $product)
+    {
+        $productAddons = $product->addons()->get();
+        $availableAddons = AddOn::whereNotIn('id', $productAddons->pluck('id'))->get();
 
-            return view('products.addons', compact('product', 'productAddons', 'availableAddons'));
-        }
+        return view('products.addons', compact('product', 'productAddons', 'availableAddons'));
+    }
 
-        /**
-         * Attach an add-on to a product.
-         */
-        public function attachAddon(Request $request, Product $product)
-        {
-            $validated = $request->validate([
-                'addon_id' => 'required|exists:addons,id',
-                'is_required' => 'nullable|boolean',
-                'min_selection' => 'nullable|integer|min:0',
-                'max_selection' => 'nullable|integer|min:0',
-            ]);
+    /**
+     * Attach an add-on to a product.
+     */
+    public function attachAddon(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'addon_id' => 'required|exists:addons,id',
+            'is_required' => 'nullable|boolean',
+            'min_selection' => 'nullable|integer|min:0',
+            'max_selection' => 'nullable|integer|min:0',
+        ]);
 
-            $product->addons()->attach($validated['addon_id'], [
-                'is_required' => $validated['is_required'] ?? false,
-                'min_selection' => $validated['min_selection'] ?? 0,
-                'max_selection' => $validated['max_selection'] ?? 1,
-            ]);
+        $product->addons()->attach($validated['addon_id'], [
+            'is_required' => $validated['is_required'] ?? false,
+            'min_selection' => $validated['min_selection'] ?? 0,
+            'max_selection' => $validated['max_selection'] ?? 1,
+        ]);
 
-            return response()->json(['success' => true, 'message' => 'Add-on added to product']);
-        }
+        return response()->json(['success' => true, 'message' => 'Add-on added to product']);
+    }
 
-        /**
-         * Detach an add-on from a product.
-         */
-        public function detachAddon(Request $request, AddOn $addon)
-        {
-            $validated = $request->validate([
-                'product_id' => 'required|exists:products,id',
-            ]);
+    /**
+     * Detach an add-on from a product.
+     */
+    public function detachAddon(Request $request, AddOn $addon)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|exists:products,id',
+        ]);
 
-            $product = Product::find($validated['product_id']);
-            $product->addons()->detach($addon->id);
+        $product = Product::find($validated['product_id']);
+        $product->addons()->detach($addon->id);
 
-            return redirect()->route('products.addons', $product)->with('message', 'Add-on removed from product');
-        }
+        return redirect()->route('products.addons', $product)->with('message', 'Add-on removed from product');
+    }
 }

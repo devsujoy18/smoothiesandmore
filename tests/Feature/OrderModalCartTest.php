@@ -55,8 +55,8 @@ test('order modal shows success feedback and bag preview after adding an item', 
         ->call('addToCart')
         ->assertDispatched('cart-updated')
         ->assertSee('added to your bag')
-        ->assertSee($product->name . ' x 2')
-        ->assertSee('Add-ons: ' . $addon->name)
+        ->assertSee($product->name.' x 2')
+        ->assertSee('Add-ons: '.$addon->name)
         ->assertSee('Note: Less sugar');
 
     expect(session()->get(CartService::SESSION_KEY))->not->toBeEmpty();
@@ -68,8 +68,8 @@ test('order modal can remove an item from the embedded bag preview', function ()
     Livewire::test(OrderModalCart::class)
         ->set('productId', $product->id)
         ->call('addToCart')
-        ->assertSee($product->name . ' x 1')
-        ->call('removeBagLine', $product->id . '|')
+        ->assertSee($product->name.' x 1')
+        ->call('removeBagLine', $product->id.'|')
         ->assertDispatched('cart-updated')
         ->assertSee('Your bag is empty');
 

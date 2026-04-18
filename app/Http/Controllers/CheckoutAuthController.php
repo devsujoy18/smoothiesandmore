@@ -46,4 +46,3 @@ class CheckoutAuthController extends Controller
         ]);
     }
 }
-

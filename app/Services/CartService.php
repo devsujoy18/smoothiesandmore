@@ -103,6 +103,6 @@ class CartService
     {
         $signature = collect($addonIds)->map(fn ($id) => (int) $id)->sort()->values()->implode('-');
 
-        return $productId . '|' . $signature;
+        return $productId.'|'.$signature;
     }
 }

@@ -19,4 +19,3 @@ class SendOtpRequest extends FormRequest
         ];
     }
 }
-

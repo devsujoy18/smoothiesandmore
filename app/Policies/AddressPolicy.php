@@ -37,4 +37,3 @@ class AddressPolicy
         return $user->id === $address->user_id;
     }
 }
-

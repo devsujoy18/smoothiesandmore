@@ -23,4 +23,3 @@ class PlaceOrderRequest extends FormRequest
         ];
     }
 }
-

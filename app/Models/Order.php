@@ -9,14 +9,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     public const PAYMENT_PENDING = 'pending';
+
     public const PAYMENT_PAID = 'paid';
+
     public const PAYMENT_FAILED = 'failed';
+
     public const PAYMENT_REFUNDED = 'refunded';
 
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_CONFIRMED = 'confirmed';
+
     public const STATUS_SHIPPED = 'shipped';
+
     public const STATUS_DELIVERED = 'delivered';
+
     public const STATUS_CANCELLED = 'cancelled';
 
     protected $fillable = [
@@ -52,4 +59,3 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 }
-

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('min_selection')->default(0); // minimum addons to select
             $table->integer('max_selection')->nullable(); // maximum addons to select (null = unlimited)
             $table->timestamps();
-            
+
             $table->unique(['product_id', 'addon_id']);
         });
     }

@@ -15,7 +15,8 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 
-    public const ROLE_USER  = 'user';
+    public const ROLE_USER = 'user';
+
     public const ROLE_ADMIN = 'admin';
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'role'
+        'role',
     ];
 
     /**

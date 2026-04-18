@@ -11,6 +11,7 @@ class AddOn extends Model
      * Explicit table name to match migration (addons).
      */
     protected $table = 'addons';
+
     protected $fillable = ['name', 'price', 'image', 'is_active'];
 
     protected $casts = [

@@ -29,4 +29,3 @@ class Otp extends Model
             ->where('expires_at', '>=', now());
     }
 }
-

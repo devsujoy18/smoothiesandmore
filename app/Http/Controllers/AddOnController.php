@@ -53,13 +53,13 @@ class AddOnController extends Controller
 
         if ($request->hasFile('image')) {
             $uploadPath = public_path('images/addons');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/addons/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/addons/'.$fileName;
         }
 
         AddOn::create($data);
@@ -96,13 +96,13 @@ class AddOnController extends Controller
             }
 
             $uploadPath = public_path('images/addons');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/addons/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/addons/'.$fileName;
         }
 
         $addon->update($data);

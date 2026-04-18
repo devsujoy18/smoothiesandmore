@@ -224,11 +224,11 @@
                 <div class="d-flex justify-content-between align-items-center pt-3 mt-3 border-top">
                     <span class="fw-semibold">Bag Total</span>
                     <span class="fw-bold fs-5">&#8377;{{ number_format($cartTotal, 2) }}</span>
-
-                    <button type="button" class="btn btn-success w-100" wire:click="proceedToCheckout">
-                        <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
-                    </button>
                 </div>
+
+                <button type="button" class="btn btn-success w-100" wire:click="proceedToCheckout">
+                    <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
+                </button>
             @endif
         </div>
     @else

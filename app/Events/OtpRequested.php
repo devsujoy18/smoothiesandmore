@@ -13,7 +13,5 @@ class OtpRequested
     public function __construct(
         public Otp $otp,
         public string $plainOtp,
-    ) {
-    }
+    ) {}
 }
-

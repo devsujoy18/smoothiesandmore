@@ -20,11 +20,11 @@ class MenuService
                 ->get();
         });
         */
-        
+
         return Category::with(['products' => function ($query) {
-                    $query->where('is_available', true)
-                            ->orderBy('sort_no');
-            }])
+            $query->where('is_available', true)
+                ->orderBy('sort_no');
+        }])
             ->orderBy('sort_no')
             ->get();
     }

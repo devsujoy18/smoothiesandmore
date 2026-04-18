@@ -8,8 +8,8 @@ use App\Models\Address;
 use App\Services\AddressService;
 use App\Services\CartService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class CheckoutAddressController extends Controller
 {
@@ -34,7 +34,7 @@ class CheckoutAddressController extends Controller
 
     public function update(UpdateAddressRequest $request, Address $address, AddressService $addressService): RedirectResponse
     {
-        //$this->authorize('update', $address);
+        // $this->authorize('update', $address);
         Gate::authorize('update-address', $address);
 
         $addressService->update($address, $request->validated());
@@ -44,7 +44,7 @@ class CheckoutAddressController extends Controller
 
     public function destroy(Address $address, AddressService $addressService): RedirectResponse
     {
-        //$this->authorize('delete', $address);
+        // $this->authorize('delete', $address);
         Gate::authorize('delete-address', $address);
 
         $addressService->delete($address);
@@ -54,7 +54,7 @@ class CheckoutAddressController extends Controller
 
     public function setDefault(Address $address, AddressService $addressService): RedirectResponse
     {
-        //$this->authorize('setDefault', $address);
+        // $this->authorize('setDefault', $address);
         Gate::authorize('set-default-address', $address);
 
         $addressService->setDefault($address);
@@ -62,4 +62,3 @@ class CheckoutAddressController extends Controller
         return back()->with('message', 'Default address updated.');
     }
 }
-

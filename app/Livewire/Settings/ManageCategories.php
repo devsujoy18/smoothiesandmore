@@ -3,21 +3,24 @@
 namespace App\Livewire\Settings;
 
 use App\Models\Category;
-use Livewire\Component;
-use Livewire\WithPagination;
-use Livewire\WithFileUploads;
 use Livewire\Attributes\Url;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ManageCategories extends Component
 {
-    use WithPagination, WithFileUploads;
+    use WithFileUploads, WithPagination;
 
     #[Url]
     public string $search = '';
 
     public string $name = '';
+
     public $image;
+
     public ?int $editingId = null;
+
     public bool $showForm = false;
 
     protected $rules = [
@@ -30,7 +33,7 @@ class ManageCategories extends Component
         $categories = Category::query()
             ->when($this->search, function ($q) {
                 $q->where('name', 'like', "%{$this->search}%")
-                  ->orWhere('slug', 'like', "%{$this->search}%");
+                    ->orWhere('slug', 'like', "%{$this->search}%");
             })
             ->orderBy('name')
             ->paginate(10);
@@ -57,16 +60,16 @@ class ManageCategories extends Component
         if ($this->image) {
             // Create directory if not exists
             $uploadPath = public_path('images/categories');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
-            
-            $fileName = time() . '_' . uniqid() . '.' . $this->image->getClientOriginalExtension();
-            $destinationPath = $uploadPath . '/' . $fileName;
-            
+
+            $fileName = time().'_'.uniqid().'.'.$this->image->getClientOriginalExtension();
+            $destinationPath = $uploadPath.'/'.$fileName;
+
             // Copy the file from temporary location to public folder
             copy($this->image->getRealPath(), $destinationPath);
-            $data['image'] = 'images/categories/' . $fileName;
+            $data['image'] = 'images/categories/'.$fileName;
         }
 
         if ($this->editingId) {
@@ -108,8 +111,8 @@ class ManageCategories extends Component
 
     public function toggleForm()
     {
-        $this->showForm = !$this->showForm;
-        if (!$this->showForm) {
+        $this->showForm = ! $this->showForm;
+        if (! $this->showForm) {
             $this->resetForm();
         }
     }

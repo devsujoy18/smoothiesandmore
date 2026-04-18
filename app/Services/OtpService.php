@@ -11,7 +11,9 @@ use Illuminate\Validation\ValidationException;
 class OtpService
 {
     private const OTP_EXPIRY_MINUTES = 5;
+
     private const MAX_RESEND = 3;
+
     private const MAX_VERIFY_ATTEMPTS = 5;
 
     public function send(string $email, string $phone): Otp
@@ -28,7 +30,7 @@ class OtpService
             ]);
         }
 
-        //$otpCode = (string) random_int(100000, 999999);
+        // $otpCode = (string) random_int(100000, 999999);
         $otpCode = (string) 123456;
 
         $otp = Otp::create([
@@ -83,4 +85,3 @@ class OtpService
         return $otp;
     }
 }
-

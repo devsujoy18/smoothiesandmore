@@ -2,16 +2,18 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Services\MenuService;
+use Livewire\Component;
 
 class HomeMenu extends Component
 {
     protected $menuService;
+
     public $categories;
 
-    public function mount(){
-        $this->menuService = new MenuService();
+    public function mount()
+    {
+        $this->menuService = new MenuService;
         $this->categories = $this->menuService->getActiveMenu();
     }
 

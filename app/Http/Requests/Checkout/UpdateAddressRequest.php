@@ -26,4 +26,3 @@ class UpdateAddressRequest extends FormRequest
         ];
     }
 }
-

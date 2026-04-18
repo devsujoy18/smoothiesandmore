@@ -45,7 +45,7 @@ function createCheckoutCartLine(bool $withAddon = false): array
     }
 
     return [
-        'key' => $product->id . '|',
+        'key' => $product->id.'|',
         'product_id' => $product->id,
         'name' => $product->name,
         'image' => null,
@@ -92,7 +92,7 @@ test('checkout address page binds address radios directly to the place order for
         ->assertSee('id="placeOrderForm"', escape: false)
         ->assertSee('name="address_id"', escape: false)
         ->assertSee('form="placeOrderForm"', escape: false)
-        ->assertSee('value="' . $address->id . '"', escape: false);
+        ->assertSee('value="'.$address->id.'"', escape: false);
 
     expect($response->getContent())->not->toContain('id="selectedAddressId"');
 });

@@ -12,7 +12,5 @@ class OtpVerified
 
     public function __construct(
         public Otp $otp,
-    ) {
-    }
+    ) {}
 }
-

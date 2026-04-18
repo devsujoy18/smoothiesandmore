@@ -84,10 +84,9 @@ class OrderService
     private function generateOrderNumber(): string
     {
         do {
-            $orderNumber = 'SNM-' . now()->format('Ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 6));
+            $orderNumber = 'SNM-'.now()->format('Ymd').'-'.strtoupper(substr(bin2hex(random_bytes(3)), 0, 6));
         } while (Order::query()->where('order_number', $orderNumber)->exists());
 
         return $orderNumber;
     }
 }
-

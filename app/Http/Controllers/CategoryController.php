@@ -50,13 +50,13 @@ class CategoryController extends Controller
 
         if ($request->hasFile('image')) {
             $uploadPath = public_path('images/categories');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/categories/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/categories/'.$fileName;
         }
 
         Category::create($data);
@@ -70,6 +70,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $category->load('products');
+
         return view('categories.show', compact('category'));
     }
 
@@ -87,7 +88,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'name' => 'required|string|max:255|unique:categories,name,'.$category->id,
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
             'sort_no' => 'nullable|integer',
         ]);
@@ -101,13 +102,13 @@ class CategoryController extends Controller
             }
 
             $uploadPath = public_path('images/categories');
-            if (!is_dir($uploadPath)) {
+            if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0755, true);
             }
 
-            $fileName = time() . '_' . uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            copy($request->file('image')->getRealPath(), $uploadPath . '/' . $fileName);
-            $data['image'] = 'images/categories/' . $fileName;
+            $fileName = time().'_'.uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            copy($request->file('image')->getRealPath(), $uploadPath.'/'.$fileName);
+            $data['image'] = 'images/categories/'.$fileName;
         }
 
         $category->update($data);

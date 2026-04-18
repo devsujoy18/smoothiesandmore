@@ -8,6 +8,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Mobile Cart Icon (Left of collapsible menu, only visible on mobile) -->
+        <div class="d-md-none me-2">
+            <livewire:cart-bag-icon />
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto align-items-center">
                 <li class="nav-item">
@@ -22,7 +27,7 @@
 
             </ul>
             <!-- Desktop Buttons (Hidden on Mobile) -->
-            <div class="d-md-flex align-items-center gap-3 ms-3 mob-center">
+            <div class="d-none d-md-flex align-items-center gap-3 ms-3 mob-center">
                 <a href="https://maps.app.goo.gl/tLpiSSsnSAwdQzYW8" target="_blank"><i style="font-size: 24px;" class="bi bi-geo-alt-fill text-white me-1"></i></a>
                 <a href="tel:+919147759811" class="btn btn-primary rounded-pill px-4 fw-bold"><i
                         class="bi bi-telephone-fill text-white me-1"></i>+91 9147759811</a>

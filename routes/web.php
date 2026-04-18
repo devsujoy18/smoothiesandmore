@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AddOnController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutAddressController;
 use App\Http\Controllers\CheckoutAuthController;
 use App\Http\Controllers\CheckoutOrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');

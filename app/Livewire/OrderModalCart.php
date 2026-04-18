@@ -12,10 +12,15 @@ use Livewire\Component;
 class OrderModalCart extends Component
 {
     public ?int $productId = null;
+
     public int $quantity = 1;
+
     public array $selectedAddons = [];
+
     public string $note = '';
+
     public bool $isOpening = false;
+
     public ?string $statusMessage = null;
 
     #[On('open-order-modal')]
@@ -57,11 +62,13 @@ class OrderModalCart extends Component
 
         if (! $product) {
             $this->addError('product', 'Please select an item before adding to bag.');
+
             return;
         }
 
         if ($this->quantity < 1) {
             $this->addError('quantity', 'Quantity must be at least 1.');
+
             return;
         }
 
@@ -74,6 +81,7 @@ class OrderModalCart extends Component
 
         if ($selectedIds->diff($addonIds)->isNotEmpty()) {
             $this->addError('selectedAddons', 'Invalid add-on selection. Please try again.');
+
             return;
         }
 
@@ -83,6 +91,7 @@ class OrderModalCart extends Component
 
         if ($requiredIds->diff($selectedIds)->isNotEmpty()) {
             $this->addError('selectedAddons', 'Please select all required add-ons.');
+
             return;
         }
 
@@ -174,6 +183,7 @@ class OrderModalCart extends Component
 
         if (auth()->check()) {
             $this->redirectRoute('checkout.addresses.index', navigate: true);
+
             return;
         }
 
